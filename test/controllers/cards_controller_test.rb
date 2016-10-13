@@ -5,7 +5,6 @@ class CardsControllerTest < ActionDispatch::IntegrationTest
     get cards_index_url
     assert_response :success
   end
-
   test "should get show" do
     get cards_show_url
     assert_response :success

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012194219) do
-
+ActiveRecord::Schema.define(version: 201_610_121_942_19) do
   create_table "cards", force: :cascade do |t|
     t.text     "original_text"
     t.text     "translated_text"
@@ -19,5 +18,4 @@ ActiveRecord::Schema.define(version: 20161012194219) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
-
 end
