@@ -1,9 +1,13 @@
 <h1>All cards</h1>
 
+<%= link_to "Add New Card", new_card_path %>
+
 <ul>
 	<% @cards.each do |card| %>
 		<li> <%= card.original_text %></li>
+    <td><%= link_to 'Show', card_path(card) %></td>
+    <td><%= link_to 'Edit', card_path(card)%></td>
 	<% end %>
 </ul>
 
-<%= link_to "Add New Card", new_cards_path %>
+
