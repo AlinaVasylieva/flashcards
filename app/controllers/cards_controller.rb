@@ -11,6 +11,8 @@ class CardsController < ApplicationController
   end
 
   def create
-    render plain: params[:pay_cards].inspect
+    @card = Card.new((params.require(:cards).permit(:original_text, :translated_text)))
+    @card.save
+    redirect_to @card
   end
 end
