@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :cards
 
-  post '/pay_cards/new' => 'pay_cards#new'
+  post '/cards/new' => 'cards#new', as: 'cards_path'
 
   post '/pay_cards' => 'pay_cards#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,6 +1,6 @@
-<h1>New Card</h1>
+<h1>Create a New Card</h1>
 
-<%= form_for :pay_card, url: pay_cards_new_path do |f| %>
+<%= form_for :cards, url: cards_path do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
