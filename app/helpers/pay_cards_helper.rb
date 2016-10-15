@@ -1,0 +1,2 @@
+module PayCardsHelper
+end
