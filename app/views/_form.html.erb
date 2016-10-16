@@ -1,6 +1,4 @@
-<h1>Create a New Card</h1>
-
-<%= form_for :card, url: cards_path do |f| %>
+<%= form_for @card do |f| %>
   <% if @card.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -28,6 +26,3 @@
     <%= f.submit %>
   </p>
 <% end %>
-
-<%= link_to 'Back', cards_path %>
-

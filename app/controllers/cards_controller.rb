@@ -18,7 +18,7 @@ class CardsController < ApplicationController
    if card.save
      redirect_to card_path(card)
    else
-     redirect 'new'
+     render 'new'
    end
   end
 
