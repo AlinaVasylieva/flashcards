@@ -6,7 +6,7 @@
 	<% @cards.each do |card| %>
 		<li> <%= card.original_text %></li>
     <td><%= link_to 'Show', card_path(card) %></td>
-    <td><%= link_to 'Edit', card_path(card)%></td>
+    <td><%= link_to 'Edit', edit_card_path(card)%></td>
     <td><%= link_to 'Destroy', card_path(card),
             method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
