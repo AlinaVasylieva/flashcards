@@ -3,10 +3,10 @@ class Card < ApplicationRecord
   before_validation :ensure_original_text_has_a_value
   validate :original_text_and_translated_text_validation
   validates_uniqueness_of :original_text, :case_sensitive => false
-  #before_create :set_date
-    #def set_date
-      #self.date = Date.today + 3.days
-    #end
+  before_create :set_review_date
+    def set_review_date
+      self.review_date = Date.today + 3.days
+    end
  
   protected
     def ensure_original_text_has_a_value
