@@ -2,11 +2,11 @@
   <% if @card.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@acard.errors.count, "error") %> prohibited
-        this article from being saved:
+        <%= pluralize(@card.errors.count, "error") %> prohibited
+        this card from being saved:
       </h2>
       <ul>
-        <% @article.errors.full_messages.each do |msg| %>
+        <% @card.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
