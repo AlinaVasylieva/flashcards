@@ -1,11 +1,12 @@
 class CardsController < ApplicationController
+  before_action :set_card, only: [:show, :edit, :update, :destroy]
+
   def index
   	@cards = Card.all
   end
 
   def show
-  	@card = Card.find(params[:id])
- end
+  end
 
   def new
     @card = Card.new
@@ -23,7 +24,6 @@ class CardsController < ApplicationController
   end
 
   def edit 
-    @card = Card.find(params[:id])
   end
 
   def update
@@ -39,9 +39,13 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
-    redirect_to cards_path
+    redirect_to :cards, flash: { notice: t('Card is successfully deleted') }
   end
  
+  def set_card
+  @card = Card.find(params[:id])
+  end
+   
 private
   def card_params
     params.require(:card).permit(:original_text, :translated_text)

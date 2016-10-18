@@ -12,12 +12,16 @@
   <section id="container">
 
     <header class="clearfix">
-      <h1>Флэшкарточкер</h1>
+      <h1>Flashcards</h1>
       <ul class="navigation-links">
-        <li><a href="#">Все карточки</a></li>
-        <li><a href="#">Добавить карточку</a></li>
+        <li><a href="#">All Cards</a></li>
+        <li><a href="#">Add Card</a></li>
       </ul>
     </header>
+
+    <% flash.each do |t| -%>
+      <%= content_tag :div, t %>
+    <% end -%>
 
  <%= yield %>
 
