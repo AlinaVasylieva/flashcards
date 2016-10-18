@@ -17,7 +17,7 @@ class Card < ApplicationRecord
   
     def original_text_and_translated_text_validation
         if self.original_text == self.translated_text
-            errors.add_to_base("Original text must be different from Translated text") 
+            errors.add( :base, "Original text must be different from Translated text") 
         end
     end
 end
