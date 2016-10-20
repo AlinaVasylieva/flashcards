@@ -11,13 +11,17 @@ require 'open-uri'
 
 def fetch
   page = Nokogiri::HTML(open("http://www.linguanaut.com/english_polish.htm")) 
-  rows = page.xpath("//*[@id='rounded-corner']")
+  rows = page.xpath("//*[@id='rounded-corner']/tbody/tr")
   
   rows_array = []
 
   rows.each do |tr|
-    original_text = tr.search('td')[0].text
-    translated_text = tr.search('td')[1].text
+    columns = tr.search('td')
+    next if columns[0].nil? or columns[1].nil?
+    #original_text = tr.search('td')[0].text
+    #translated_text = tr.search('td')[1].text
+    original_text = columns[0].text
+    translated_text = columns[1].text
     rows_array << Card.create(original_text: original_text, translated_text: translated_text)
     row_new = Card.new(original_text: original_text, translated_text: translated_text)
     puts row_new
