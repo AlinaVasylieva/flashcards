@@ -5,6 +5,12 @@
       </p>
     </section>
 
+    <section>
+      <p style="font-size: 28px;">
+      <%= @card.translated_text %>
+      </p>
+    </section>
+
 
 <%= form_tag('/check', method: "post") do %>
   <%= label_tag(:q, "Original Text") %><br>
