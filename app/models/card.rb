@@ -19,5 +19,7 @@ class Card < ApplicationRecord
         if self.original_text == self.translated_text
             errors.add( :base, "Original text must be different from Translated text") 
         end
-    end
+    end  
+
+    scope :random_card, ->{ where('review_date <=?', Date.today).order('RANDOM()').limit(1).first }  
 end

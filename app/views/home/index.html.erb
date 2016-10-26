@@ -5,4 +5,11 @@
       </p>
     </section>
 
+
+<%= form_tag('/check', method: "post") do %>
+  <%= label_tag(:q, "Original Text") %><br>
+  <%= text_field_tag(:q) %><br>
+  <%= hidden_field_tag "card_id", @card.id %>
+  <br><%= submit_tag("Check") %>
+<% end %>
  
