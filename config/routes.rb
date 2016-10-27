@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/home' => 'home#index'
+  post '/check' => 'home#check'
 
   resources :cards
 

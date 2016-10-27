@@ -19,8 +19,8 @@
       </ul>
     </header>
 
-    <% flash.each do |t| -%>
-      <%= content_tag :div, t %>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
     <% end -%>
 
  <%= yield %>
