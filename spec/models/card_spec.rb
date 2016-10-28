@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Card do
-  it "has a valid factory"
-    Factory.create(:card).to be_valid
+  it "has a valid factory" do
+    FactoryGirl.create(:card).to be_valid
   end
 
   it "is invalid without original_text " do
@@ -27,20 +27,5 @@ describe Card do
   end
   
   it "returns a random card by expired date" do
-    card_today = Card.new (
-      original_text: 'Hey',
-      translated_text: 'Привет',
-      review_date: Date.today
-    )
-    card_three_days = Card.new(
-      original_text: 'Bye',
-      translated_text: 'Пока',
-      review_date: (Date.today + 3.days)
-    )
-    card_tomorrow = Card.new(
-      original_text: 'Till next meeting',
-      translated_text: 'До следующей встречи',
-      review_date: (Date.tomorrow)
-    )
-    expect(Card.select {|m| m.review_date == Date.today}).to eq[card_today]
+    expect(Card.random_card.to_sql).to include('RANDOM()')
 end
