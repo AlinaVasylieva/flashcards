@@ -6,14 +6,12 @@ describe Card do
   end
 
   it "is invalid without original_text " do
-    card = Card.new(:original_text =>nil)
-    card.valid?
+    card = Card.create(:original_text =>nil)
     expect(card.errors[:original_text]).to include("Can't be blank")
   end
 
   it "is invalid without translated_text " do
-    card = Card.new(:translated_text =>nil)
-    card.valid?
+    card = Card.create(:translated_text =>nil)
     expect(card.errors[:translated_text]).to include("Can't be blank")
   end
 
@@ -30,22 +28,19 @@ describe Card do
   
   it "returns a random card by expired date" do
     card_today = Card.new (
-      original_text: "Hey"
-      translated_text: "Привет"
+      original_text: 'Hey',
+      translated_text: 'Привет',
       review_date: Date.today
     )
-
     card_three_days = Card.new(
-      original_text: "Bye"
-      translated_text: "Пока"
+      original_text: 'Bye',
+      translated_text: 'Пока',
       review_date: (Date.today + 3.days)
     )
-
     card_tomorrow = Card.new(
-      original_text: "Till next meeting"
-      translated_text: "До следующей встречи"
+      original_text: 'Till next meeting',
+      translated_text: 'До следующей встречи',
       review_date: (Date.tomorrow)
     )
-
     expect(Card.select {|m| m.review_date == Date.today}).to eq[card_today]
 end
