@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def check
     result = Trainer.call(
-      card_id: params[:id],
+      card_id: params[:card_id],
       original_text: params[:q]
     )
     redirect_to root_path, notice: result.notice
