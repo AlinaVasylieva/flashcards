@@ -1,15 +1,20 @@
 require 'rails_helper'
 
 describe Trainer do
-  
-  context "when correct" do
-    card = Trainer.call(card_id: ["17"], original_text: ["First Card"])
-    expect (card.notice).to include("Correct!")
 
+  before do
+    Card.destroy_all
+  end
+
+  it "is valid" do
+    card = create(:card)
+    result = Trainer.call(card_id: card.id, original_text: "Hello")
+    expect(result.notice).to include("Correct!")
   end
 
   it "updates review_date when correct" do
-    card = Trainer.call(card_id: ["29"], original_text: ["Do you speak (English/ Polish)"])
-    expect(card.review_date).to ed(Date.today + 3.days)
+    card = create(:card)
+    result = Trainer.call(card_id: card.id, original_text: "Hello")
+    expect(result.card.review_date).to eq(Date.today + 3.days)
   end
 end
