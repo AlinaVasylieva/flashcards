@@ -19,17 +19,15 @@ describe Card do
 
   it "is fetching a review_date" do
     Card.destroy_all
-    create(:card)
+    card = create(:card)
     expect(card.review_date).to eq(Date.today + 3.days)
   end
 
   it "is invalid if original_text equals to translated_text" do
     card = Card.create(original_text: 'test', translated_text: 'test') 
     expect(card.errors.values).to include(["Original text must be different from Translated text"])
-    #expect(:original_text).not_to eq(:translated_text)
-    #expect(card.errors[:original_text, :translated_text]).to include("Original text must be different from Translated text")
   end
-  
+
   it "returns a random card by expired date" do
     expect(Card.random_card.to_sql).to include('RANDOM()')
   end
