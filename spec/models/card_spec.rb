@@ -23,14 +23,14 @@ describe Card do
   end
 
   it "is fetching a review_date" do
-    card = Card.destroy_all
+    Card.destroy_all
     create(:card)
-    expect(review_date).to eq(Date.today + 3.days)
+    expect(card(set_review_date)).to eq((Date.today + 3.days).to_s)
   end
 
   it "is invalid if original_text equals to translated_text" do
     card = Card.create(original_text: 'test', translated_text: 'test') 
-    expect(card.errors).to include("Original text must be different from Translated text")
+    expect(card.errors.values).to include(["Original text must be different from Translated text"])
     #expect(:original_text).not_to eq(:translated_text)
     #expect(card.errors[:original_text, :translated_text]).to include("Original text must be different from Translated text")
   end
