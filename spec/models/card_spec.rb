@@ -2,11 +2,6 @@ require 'rails_helper'
 
 describe Card do
 
-  before(:all) do
-    Card.destroy_all
-    FactoryGirl.create(:card)
-  end
-
   it "has a valid factory" do
     card = Card.destroy_all
     expect(create(:card)).to be_valid
@@ -25,7 +20,7 @@ describe Card do
   it "is fetching a review_date" do
     Card.destroy_all
     create(:card)
-    expect(card(set_review_date)).to eq((Date.today + 3.days).to_s)
+    expect(card.review_date).to eq(Date.today + 3.days)
   end
 
   it "is invalid if original_text equals to translated_text" do
