@@ -21,5 +21,5 @@ class Card < ApplicationRecord
         end
     end  
 
-    scope :random_card, ->{ where('review_date <=?', Date.today).order('RANDOM()').limit(1).first }  
+scope :random_card, ->{ where('review_date <=?', Date.today).order('RANDOM()').limit(1) }  
 end
