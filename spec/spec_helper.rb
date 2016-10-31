@@ -96,4 +96,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+require 'capybara/rspec'
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :firefox,
+      desired_capabilities: Selenium::WebDriver::Remote::Capabilities.firefox(marionette: false)
+    )
+  end
 end
