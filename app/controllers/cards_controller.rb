@@ -13,7 +13,6 @@ class CardsController < ApplicationController
   end
 
   def create
-  #Card.create(params[:card])
     card = Card.new(card_params)
  
    if card.save
