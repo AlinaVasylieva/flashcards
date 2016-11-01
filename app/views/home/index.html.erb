@@ -5,12 +5,16 @@
       </p>
     </section>
 
-    <section>
+    <% if @card.nil? %>
+      <section>
+        <p>There is no card for check</p>
+      </section>
+    <% else %>
+       <section>
       <p style="font-size: 28px;">
       <%= @card.translated_text %>
       </p>
     </section>
-
 
 <%= form_tag('/check', method: "post") do %>
   <%= label_tag(:q, "Original Text") %><br>
@@ -18,4 +22,5 @@
   <%= hidden_field_tag "card_id", @card.id %>
   <br><%= submit_tag("Check") %>
 <% end %>
+    <% end %>
  
