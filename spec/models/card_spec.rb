@@ -31,4 +31,11 @@ describe Card do
   it "returns a random card by expired date" do
     expect(Card.random_card.to_sql).to include('RANDOM()')
   end
+
+  it "belongs_to user" do
+    user = create(:user)
+    card = create(:card)
+    user.cards << card
+    expect(card).to belong_to(user)
+  end
 end
