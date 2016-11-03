@@ -4,7 +4,7 @@ describe Card do
 
   it "has a valid factory" do
     card = Card.destroy_all
-    expect(create(:card)).to be_valid
+    expect(create(:card, {user_id: create(:user).id})).to be_valid
   end
 
   it "is invalid without original_text " do
@@ -19,7 +19,7 @@ describe Card do
 
   it "is fetching a review_date" do
     Card.destroy_all
-    card = create(:card)
+    card = create(:card, {user_id: create(:user).id})
     expect(card.review_date).to eq(Date.today + 3.days)
   end
 
@@ -33,9 +33,7 @@ describe Card do
   end
 
   it "belongs_to user" do
-    user = create(:user)
-    card = create(:card)
-    user.cards << card
-    expect(card).to belong_to(user)
+    association = Card.reflect_on_association(:user)
+    expect(association.macro).to eq :belongs_to
   end
 end

@@ -1,15 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    user = create(:user)
-    card = create(:card)
-    user.cards << card
-  end
-
   it "has_many cards" do
-    expect(user).to have_many(cards)
+    association = User.reflect_on_association(:cards)
+    expect(association.macro).to eq :has_many
   end
 end
-
-
