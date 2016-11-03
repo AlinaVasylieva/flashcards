@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Card check", :type => :feature do
   
   before do
-    card = create(:card)
+    card = create(:card, {user_id: create(:user).id})
     card.update(review_date: 1.day.ago)
   end
 
