@@ -1,0 +1,10 @@
+<h1>Your Account:</h1>
+
+<section>
+      <p style="font-size: 28px;">
+      <li> <%= @user.email  %></li>
+      </p>
+</section>
+
+ <%= link_to 'Edit', edit_user_path(@user) %> 
+ <%= link_to 'Back', root_url %>
