@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_filter :require_login, :only => :cards
 
   def index
   	@cards = Card.all

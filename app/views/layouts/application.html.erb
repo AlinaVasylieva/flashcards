@@ -16,8 +16,20 @@
       <ul class="navigation-links">
         <li><a href="cards">All Cards</a></li>
         <li><a href="cards/new">Add Card</a></li>
+        <li><a href="signup"> SignUp</a></li>
+        <li><a href="login"> SignIn</a></li>
       </ul>
     </header>
+
+    <div class="user_nav">
+      <% if current_user %>
+        Logged in as <%= current_user.email %>
+        <% link_to "Log out", logout_path %>
+      <% else %>
+        <% link_to "Sign up", signup_path %>
+        <% link_to "Log in", login_path %>
+      <% end %>
+    </div>
 
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
