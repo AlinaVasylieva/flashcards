@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
   def new
     @users = User.new
   end
@@ -8,8 +8,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new (params[:user])
+    @user = User.new(params[:user])
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_url, :notice =>"Signed up successfully"
     else
       render 'new'
@@ -34,6 +35,6 @@ class UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
