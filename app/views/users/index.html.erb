@@ -1,0 +1,9 @@
+<h1>Account Settings</h1>
+
+<ul>
+  <td><%= link_to 'Show', user_path(current_user) %></td>
+  <td><%= link_to 'Edit', edit_user_path(current_user)%></td>
+  <td><%= link_to 'Destroy', users_path(current_user),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %></td>
+</ul>
