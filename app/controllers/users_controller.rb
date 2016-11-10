@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   #has_secure_password validations: false
 
+  def index
+    #render 'show'
+    @user = current_user
+  end
+
   def new
     @user = User.new
   end
@@ -23,8 +28,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    if 
     @user = User.find(params[:user_id])
     if @user.update(user_params)
+      flash[:success] = "Profile successfully updated"
       redirect_to @user
     else
       render 'edit'
@@ -32,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
   end
   
   private
