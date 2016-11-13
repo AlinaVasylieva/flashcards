@@ -1,21 +1,19 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
   #has_secure_password validations: false
 
   def index
     #render 'show'
-    @user = current_user
   end
 
   def new
-    @user = User.new
+    @user = current_user.new
   end
 
   def show
   end
 
   def create
-    @user = User.new(user_params)
+    @user = current_user.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_url, :notice =>"Signed up successfully"
@@ -28,18 +26,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    if 
-    @user = User.find(params[:user_id])
-    if @user.update(user_params)
+    if current_user.update(user_params)
       flash[:success] = "Profile successfully updated"
-      redirect_to @user
+      redirect_to current_user
     else
       render 'edit'
     end
-  end
-
-  def set_user
-    @user = User.find(params[:id])
   end
   
   private

@@ -5,14 +5,14 @@
       </p>
     </section>
 
-    <% if @card.nil? %>
+    <% if current_user.cards.nil? %>
       <section>
         <p>There is no card for check</p>
       </section>
     <% else %>
        <section>
       <p style="font-size: 28px;">
-      <%= @card.translated_text %>
+      <%= current_user.cards.translated_text %>
       </p>
     </section>
 
@@ -20,6 +20,7 @@
   <%= label_tag(:q, "Original Text") %><br>
   <%= text_field_tag(:q) %><br>
   <%= hidden_field_tag "card_id", @card.id %>
+  <%= hidden_field_tag "user", current_user %>
   <br><%= submit_tag("Check") %>
 <% end %>
     <% end %>
