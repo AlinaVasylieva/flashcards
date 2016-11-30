@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     result = Trainer.call(
       card_id: params[:card_id],
       original_text: params[:q],
-      user: current user 
+      user: (current user) 
     )
     redirect_to root_path, notice: result.notice
   end
