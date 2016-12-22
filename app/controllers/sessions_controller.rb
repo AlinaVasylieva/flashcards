@@ -3,11 +3,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = login(params[:email], params[:password], params[:remember_me])
+    auth = requires.env['omniauth.auth']
+    session[:omniauth] = auth.expect('extra')
+    user = User.sign_in_from_omniauth(auth)
+    #user = login(params[:email], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to root_url, :notice =>"Logged in successfully"
+      redirect_back_or_to root_url, :notice =>'Logged in successfully'
     else
-      flash.now.alert = "Invalid email or password"
+      flash.now.alert = 'Invalid email or password'
       render 'new'
     end
 
@@ -19,11 +22,21 @@ class SessionsController < ApplicationController
         #flash.now.alert = "Invalid email or password"
         #render 'new'
       #end
+      
+      #Omniauth
+      #auth = requires.env['omniauth.auth']
+      #session[:omniauth] = auth.expect('extra')
+      #user = User.sign_in_from_omniauth(auth)
+      #
   end
 
   def destroy
     logout
-    #session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out successfully"
+    session[:omniauth] = nil
+    redirect_to root_url, :notice =>'Logged out successfully'
+  end
+
+  def failure
+    redirect_to root_url, :alert =>'Authentication failed, please try again'
   end
 end
