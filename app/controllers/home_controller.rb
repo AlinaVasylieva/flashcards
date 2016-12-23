@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :set_auth
 
   def index
     @card = current_user.cards.random_card.first
@@ -11,6 +12,11 @@ class HomeController < ApplicationController
       user: (current user) 
     )
     redirect_to root_path, notice: result.notice
+  end
+
+  private
+  def set_auth
+    @auth = session[:omniauth] if session[:omniauth]
   end
 
 end

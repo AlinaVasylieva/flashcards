@@ -3,16 +3,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = requires.env['omniauth.auth']
+    auth = request.env['omniauth.auth']
     session[:omniauth] = auth.expect('extra')
     user = User.sign_in_from_omniauth(auth)
+    session[:user_id] = user.id
+    redirect_to root_url, :notice =>'Signed in successfully'
     #user = login(params[:email], params[:password], params[:remember_me])
-    if user
-      redirect_back_or_to root_url, :notice =>'Logged in successfully'
-    else
-      flash.now.alert = 'Invalid email or password'
-      render 'new'
-    end
+    #if user
+      #redirect_back_or_to root_url, :notice =>'Logged in successfully'
+    #else
+      #flash.now.alert = 'Invalid email or password'
+      #render 'new'
+    #end
 
     #user = User.where(email: params[:email]).first
       #if user && user.authenticate(params[:password])

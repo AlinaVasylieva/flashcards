@@ -6,41 +6,59 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
 
 <body>
-  <section id="container">
 
-   <div class="user_navigation">
-      <% if current_user %>
-        Logged in as <%= current_user.email %>
-        <%= link_to "Log out", logout_path %>
-      <% else %>
-        <%= link_to "Sign up", signup_path %> or
-        <%= link_to "Log in", login_path %>
-      <% end %>
-    </div
+  <% #Onmiauth %>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <h1><%= link_to root_path do %>Flashcards<% end %></h1>
+      </div>
+      <div class="nav navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <div class="user_account">
-      <% if current_user %>
-        <%= link_to "My account", users_path(@user) %>
-      <% end %>
-    </div>
-
-    <header class="clearfix">
-      <h1>Flashcards</h1>
-      <ul class="navigation-links">
-        <li><%= link_to "All Cards", cards_path %></li>
-        <li><%= link_to "Add Card", new_card_path %></li>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li>Signed in as: <%= current_user.name %> - <%= image_tag(@auth['info']['image'], width: '50', height: '50', class: 'img-circle') %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "auth/facebook" do %><%= image_tag('facebook.jpeg', width: '40', height: '40', class: 'img-circle') %><% end %></li>
+        <% end %>
       </ul>
-    </header>
 
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+      </div>
+    </div>
+  </nav>
+
+  <%= flash.each do |key, value| %>
+    <div class="alert alert-info"><%= value %></div>
+  <% end %>
+
+  <% if current_user %>
+    <div class="text-container">
+      <h1>Welcome, <%= current_user.name %></h1>
+      <h4>Logged in with -> <strong><en><%= @auth['provider'].capitalize %></strong></en></h4>
+      <%= image_tag('logo.png') %>
+    </div>
+  <% end %>
 
  <%= yield %>
 
-  </section>
-</body>
+  </body>
 </html>
