@@ -4,9 +4,10 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    session[:omniauth] = auth.expect('extra')
+    session[:omniauth] = auth.except('extra')
     user = User.sign_in_from_omniauth(auth)
     session[:user_id] = user.id
+    @current_user = User.find(session[:user_id])
     redirect_to root_url, :notice =>'Signed in successfully'
     #user = login(params[:email], params[:password], params[:remember_me])
     #if user

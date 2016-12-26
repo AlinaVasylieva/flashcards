@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20161109121839) do
     t.datetime "updated_at",                   null: false
     t.string   "crypted_password"
     t.string   "salt"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
