@@ -46,7 +46,7 @@
     </div>
   </nav>
 
-  <%= flash.each do |key, value| %>
+  <% flash.each do |key, value| %>
     <div class="alert alert-info"><%= value %></div>
   <% end %>
 
@@ -54,7 +54,6 @@
     <div class="text-container">
       <h1>Welcome, <%= current_user.name %></h1>
       <h4>Logged in with -> <strong><en><%= @auth['provider'].capitalize %></strong></en></h4>
-      <%= image_tag('logo.png') %>
     </div>
   <% end %>
 
