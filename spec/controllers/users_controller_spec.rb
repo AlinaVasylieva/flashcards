@@ -9,11 +9,5 @@ RSpec.describe UsersController, type: :controller do
       post :create, {user: FactoryGirl.attributes_for(:user)}
       }.to change { User.count }
     end
-
-    #it "gets full user data" do
-      #expect {
-        #get :index, {user: FactoryGirl.attributes_for(:user)}
-      #}.to_have {}
-    #end
   end
 end

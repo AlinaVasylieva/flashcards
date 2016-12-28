@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161109121839) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.string   "avatar_url"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
