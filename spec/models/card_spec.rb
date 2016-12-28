@@ -4,7 +4,7 @@ describe Card do
 
   it "has a valid factory" do
     card = Card.destroy_all
-    expect(create(:card)).to be_valid
+    expect(create(:card, {user_id: create(:user).id})).to be_valid
   end
 
   it "is invalid without original_text " do
@@ -19,7 +19,7 @@ describe Card do
 
   it "is fetching a review_date" do
     Card.destroy_all
-    card = create(:card)
+    card = create(:card, {user_id: create(:user).id})
     expect(card.review_date).to eq(Date.today + 3.days)
   end
 
@@ -30,5 +30,10 @@ describe Card do
 
   it "returns a random card by expired date" do
     expect(Card.random_card.to_sql).to include('RANDOM()')
+  end
+
+  it "belongs_to user" do
+    association = Card.reflect_on_association(:user)
+    expect(association.macro).to eq :belongs_to
   end
 end
