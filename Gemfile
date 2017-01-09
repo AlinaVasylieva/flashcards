@@ -61,4 +61,5 @@ gem 'sorcery'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'carrierwave', '~> 1.0'
 
