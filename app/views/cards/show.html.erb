@@ -5,7 +5,7 @@
       <li> <%= @card.original_text  %></li>
       <li> <%= @card.translated_text %></li>
       <li> <%= @card.review_date %></li>
-      <li> <%= image_tag @card.image_url(:thumb) if @card.image? %></li>
+      <li> <%= image_tag @card.image.thumb.url if @card.image? %></li>
       </p>
 </section>
 
