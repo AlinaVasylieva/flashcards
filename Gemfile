@@ -62,4 +62,5 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 
