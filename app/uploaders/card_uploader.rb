@@ -1,4 +1,5 @@
 class CardUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -28,11 +29,19 @@ class CardUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  #version :thumb do
+    #process :scale => [360,360]
+  #end
 
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]
   # end
+  version :thumb do
+    process resize_to_limit: [360,360]
+  end
+
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
