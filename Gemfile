@@ -61,6 +61,7 @@ gem 'sorcery'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'fog-aws', group: :production
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
