@@ -21,6 +21,7 @@
   <%= text_field_tag(:q) %><br>
   <%= hidden_field_tag "card_id", @card.id %>
   <%= hidden_field_tag "user", current_user %>
+  <br><p><%= image_tag @card.image.thumb.url if @card.image? %></p>
   <br><%= submit_tag("Check") %>
 <% end %>
     <% end %>
