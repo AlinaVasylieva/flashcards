@@ -1,12 +1,12 @@
-<%= simple_form_for current_user.cards do |f| %>
-  <% if current_user.cards.errors.any? %>
+<%= simple_form_for @card, :html => {:multipart => true} do |f| %>
+  <% if @card.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(current_user.cards.errors.count, "error") %> prohibited
+        <%= pluralize(@card.errors.count, "error") %> prohibited
         this card from being saved:
       </h2>
       <ul>
-        <% current_user.cards.errors.full_messages.each do |msg| %>
+        <% @card.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -20,6 +20,10 @@
   <p>
     <%= f.label :translated_text %><br>
     <%= f.text_area :translated_text %>
+  </p>
+
+  <p>
+    <%= f.file_field :image %><br>
   </p>
  
   <p>

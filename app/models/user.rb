@@ -6,7 +6,9 @@ class User < ApplicationRecord
   #validates_presence_of :email
   #validates_uniqueness_of :email
   
-  has_many :cards
+  #has_many :cards
+  has_many :decks
+  belongs_to :current_deck, class_name: "Deck"
 
   def self.sign_in_from_omniauth(auth)
     find_by(provider: auth['provider'], uid: auth['uid']) || create_user_from_omniauth(auth)

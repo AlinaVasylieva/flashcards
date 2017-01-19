@@ -1,10 +1,13 @@
 class Card < ApplicationRecord
-  belongs_to :user
+  #attr_accessor :image
+  #belongs_to :user
+  belongs_to :deck
   validates :original_text, :translated_text, :presence => true
   before_validation :ensure_original_text_has_a_value
   validate :original_text_and_translated_text_validation
   validates_uniqueness_of :original_text, :case_sensitive => false
   before_create :set_review_date
+  mount_uploader :image, CardUploader
     def set_review_date
       self.review_date = Date.today + 3.days
     end
