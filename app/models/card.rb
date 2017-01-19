@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
-  attr_accessor :image
-  belongs_to :user
+  #attr_accessor :image
+  #belongs_to :user
+  belongs_to :deck
   validates :original_text, :translated_text, :presence => true
   before_validation :ensure_original_text_has_a_value
   validate :original_text_and_translated_text_validation
