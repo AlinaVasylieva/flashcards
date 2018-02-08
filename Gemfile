@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 group :development, :test do
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
 end
 
 group :development do
