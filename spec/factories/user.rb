@@ -14,11 +14,3 @@ FactoryBot.define do
     remember_me_token_expires_at 'nil'
   end
 end
-
-FactoryBot.define do
-  factory :card do |f|
-    f.original_text "Hello"
-    f.translated_text "Привет"
-    f.review_date (Date.today + 3.days)
-  end
-end
